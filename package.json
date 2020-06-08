@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 8686",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^9.4.4",
     "aws-amplify": "^3.0.16",
     "final-form": "^4.20.0",
     "next": "9.4",
+    "qs": "^6.9.4",
+    "ramda": "^0.27.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-final-form": "^6.5.0",
