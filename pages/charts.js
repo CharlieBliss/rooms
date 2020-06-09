@@ -1,17 +1,9 @@
 /** @jsx jsx */
-import { useContext, memo, Profiler } from 'react'
-import times from 'ramda/src/times'
-import { css, jsx } from '@emotion/core'
-import emoStyled from '@emotion/styled'
-import styled from 'styled-components'
-import { createUseStyles } from "react-jss";
+import { useContext } from 'react'
+import { jsx } from '@emotion/core'
 
-import map from 'ramda/src/map'
-import { useQuery, queryCache } from 'react-query'
-import apiRequest from 'api/apiRequest'
-import Head from 'next/head'
+import useFetchList from 'api/useFetchList'
 import Link from 'next/Link'
-import { currentAwsToken } from 'auth/awsAmplify'
 import { AuthContext } from 'pages/_app'
 
 
@@ -35,15 +27,7 @@ const Discover = () => {
 		sort: 'hotness',
 		exclude_removed: true,
 	}
-	const { status, data, error } = useQuery(
-		['tracks', { queryParams }],
-		apiRequest({path: 'tracks', queryParams }),
-		{
-			initialData: queryCache.getQueryData('tracks'),
-			refetchOnWindowFocus: false,
-		}
-	)
-	console
+	const { data } = useFetchList('tracks', queryParams)
 	if(authenticated) {
 		return (
 			<div>
@@ -52,9 +36,9 @@ const Discover = () => {
 				</div>
 				<ul>
 					{
-						data?.results.map(
+						data?.map(
 							item => (
-								<Link href={`tracks/${item.id}`}key={item.id}>
+								<Link href="tracks/[id]" as={`tracks/${item.id}`} key={item.id}>
 									<a>
 										<li
 											css={createStyles(item.id)}

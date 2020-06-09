@@ -1,22 +1,11 @@
 import { useQuery, queryCache } from 'react-query'
 import { useRouter } from 'next/router'
-import Head from 'next/head'
-import Link from 'next/Link'
-import apiRequest from 'api/apiRequest'
+import useFetchRecord from 'api/useFetchRecord'
 
 export default function Home() {
 	const router = useRouter()
 	const { id } = router.query
-	const { status, data, error } = useQuery(
-		['communities', id],
-		apiRequest({path: `communities/${id}`}),
-		{
-			initialData: () => {
-				console.log(queryCache)
-				return queryCache.getQueryData('communities')?.find(data => data.id === id)
-			},
-		}
-	)
+	const { status, data, error } = useFetchRecord('communities', id)
 	return (
 		<>
 			<div>
