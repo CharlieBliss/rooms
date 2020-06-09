@@ -5,11 +5,14 @@
   "scripts": {
     "dev": "next dev -p 8686",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8686"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "@emotion/styled": "^10.0.27",
     "@next/bundle-analyzer": "^9.4.4",
     "aws-amplify": "^3.0.16",
+    "babel-eslint": "^10.1.0",
     "final-form": "^4.20.0",
     "next": "9.4",
     "qs": "^6.9.4",
@@ -17,6 +20,12 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-final-form": "^6.5.0",
-    "react-query": "^1.5.5"
+    "react-jss": "^10.2.0",
+    "react-query": "^1.5.5",
+    "styled-components": "^5.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-plugin-react": "^7.20.0"
   }
 }

@@ -15,31 +15,40 @@ import { currentAwsToken } from 'auth/awsAmplify'
 import { AuthContext } from 'pages/_app'
 
 
-const createStyles = (id) => ({
-	padding: '0.5em',
-	margin: '0.5em',
-	color: `RGB(${id % 256}, 200, 200)`,
-	background: 'papayawhip',
-	border: 'none',
-	borderRadius: '3px',
-})
+const createStyles = (id) => {
+	const colors = ['papayawhip', 'cadetblue', 'lightcoral', 'darkseagreen']
+	const color = colors[id % 4]
+	return ({
+		padding: '0.5em',
+		margin: '0.5em',
+		color: `RGB(${id % 240}, ${id % 23}, ${id % 20})`,
+		backgroundColor: color,
+		border: 'none',
+		borderRadius: '3px',
+	})
+}
 
 
 const Discover = () => {
 	const { authenticated } = useContext(AuthContext)
+	const queryParams = {
+		sort: 'hotness',
+		exclude_removed: true,
+	}
 	const { status, data, error } = useQuery(
-		'tracks',
-		apiRequest({path: 'tracks'}),
+		['tracks', { queryParams }],
+		apiRequest({path: 'tracks', queryParams }),
 		{
 			initialData: queryCache.getQueryData('tracks'),
 			refetchOnWindowFocus: false,
 		}
 	)
+	console
 	if(authenticated) {
 		return (
 			<div>
 				<div>
-					Hello, this is the discover page. You need to be authenticated to see me.
+					Hello, this is the charts page. You need to be authenticated to see me.
 				</div>
 				<ul>
 					{

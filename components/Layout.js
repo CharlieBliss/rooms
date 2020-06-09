@@ -7,17 +7,44 @@ export default function Home({ children }) {
 		<ul>
 		<li>
 			<Link href="/">
-			Home
+			<a>
+				Home
+			</a>
 			</Link>
 		</li>
 		<li>
 			<Link href="/login">
-			Login
+			<a>
+				Login
+			</a>
 			</Link>
 		</li>
 		<li>
 			<Link href="/discover">
-				Discover
+				<a>
+					Discover
+				</a>
+			</Link>
+		</li>
+		<li>
+			<Link href="/communities">
+				<a>
+					Communities
+				</a>
+			</Link>
+		</li>
+		<li>
+			<Link href="/charts">
+				<a>
+					Charts
+				</a>
+			</Link>
+		</li>
+		<li>
+			<Link href="/profiles">
+				<a>
+					Profiles
+				</a>
 			</Link>
 		</li>
 		</ul>

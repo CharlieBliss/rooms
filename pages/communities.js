@@ -25,13 +25,13 @@ const createStyles = (id) => ({
 })
 
 
-const Discover = () => {
+const Communities = () => {
 	const { authenticated } = useContext(AuthContext)
 	const { status, data, error } = useQuery(
-		'tracks',
-		apiRequest({path: 'tracks'}),
+		'communities',
+		apiRequest({path: 'communities'}),
 		{
-			initialData: queryCache.getQueryData('tracks'),
+			initialData: queryCache.getQueryData('communities'),
 			refetchOnWindowFocus: false,
 		}
 	)
@@ -39,18 +39,18 @@ const Discover = () => {
 		return (
 			<div>
 				<div>
-					Hello, this is the discover page. You need to be authenticated to see me.
+					Hello, this is the community page. You need to be authenticated to see me.
 				</div>
 				<ul>
 					{
 						data?.results.map(
 							item => (
-								<Link href={`tracks/${item.id}`}key={item.id}>
+								<Link href={`communities/${item.id}`}key={item.id}>
 									<a>
 										<li
 											css={createStyles(item.id)}
 										>
-											{item.title}
+											{item.name}
 										</li>
 									</a>
 								</Link>
@@ -63,9 +63,9 @@ const Discover = () => {
 	}
 	return (
 		<div>
-			Warnign you are banned
+			Warning you are banned
 		</div>
 	)
 }
 
-export default Discover
+export default Communities

@@ -15,23 +15,27 @@ import { currentAwsToken } from 'auth/awsAmplify'
 import { AuthContext } from 'pages/_app'
 
 
-const createStyles = (id) => ({
-	padding: '0.5em',
-	margin: '0.5em',
-	color: `RGB(${id % 256}, 200, 200)`,
-	background: 'papayawhip',
-	border: 'none',
-	borderRadius: '3px',
-})
+const createStyles = (id) => {
+	const colors = ['papayawhip', 'cadetblue', 'lightcoral', 'darkseagreen']
+	const color = colors[id % 4]
+	return ({
+		padding: '0.5em',
+		margin: '0.5em',
+		color: `RGB(${id % 240}, ${id % 23}, ${id % 20})`,
+		backgroundColor: color,
+		border: 'none',
+		borderRadius: '3px',
+	})
+}
 
 
-const Discover = () => {
+const Profiles = () => {
 	const { authenticated } = useContext(AuthContext)
 	const { status, data, error } = useQuery(
-		'tracks',
-		apiRequest({path: 'tracks'}),
+		'profiles',
+		apiRequest({path: 'profiles'}),
 		{
-			initialData: queryCache.getQueryData('tracks'),
+			initialData: queryCache.getQueryData('profiles'),
 			refetchOnWindowFocus: false,
 		}
 	)
@@ -39,18 +43,18 @@ const Discover = () => {
 		return (
 			<div>
 				<div>
-					Hello, this is the discover page. You need to be authenticated to see me.
+					Hello, this is the community page. You need to be authenticated to see me.
 				</div>
 				<ul>
 					{
 						data?.results.map(
 							item => (
-								<Link href={`tracks/${item.id}`}key={item.id}>
+								<Link href={`profiles/${item.id}`}key={item.id}>
 									<a>
 										<li
 											css={createStyles(item.id)}
 										>
-											{item.title}
+											{item.name}
 										</li>
 									</a>
 								</Link>
@@ -63,9 +67,9 @@ const Discover = () => {
 	}
 	return (
 		<div>
-			Warnign you are banned
+			Warning you are banned
 		</div>
 	)
 }
 
-export default Discover
+export default Profiles
