@@ -14,7 +14,7 @@
     "aws-amplify": "^3.0.16",
     "babel-eslint": "^10.1.0",
     "final-form": "^4.20.0",
-    "next": "9.4",
+    "next": "11.1",
     "qs": "^6.9.4",
     "ramda": "^0.27.0",
     "react": "16.13.1",
